@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Session Demo</title>
+  </head>
+  <body class="p-4">
+    <h1>Session Example</h1>
+
+    {% if name and password %}
+    <p><strong>Name:</strong> {{ name }}</p>
+    <p><strong>Password:</strong> {{ password }}</p>
+    {% else %}
+    <p>No session data found.</p>
+    {% endif %}
+
+    <a href="{{ url_for('set_data') }}"><button>Set Session Data</button></a>
+  </body>
+</html>
