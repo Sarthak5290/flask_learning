@@ -1,0 +1,29 @@
+<!-- templates/auth/register.html -->
+{% extends "base.html" %}
+
+{% block title %}Register - Todo App{% endblock %}
+
+{% block content %}
+<h2>Register</h2>
+
+<form method="POST" style="max-width: 400px;">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    
+    <button type="submit" class="btn">Register</button>
+</form>
+
+<p><a href="{{ url_for('auth.login') }}">Already have an account? Login here</a></p>
+{% endblock %}

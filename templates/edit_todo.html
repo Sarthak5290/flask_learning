@@ -1,0 +1,39 @@
+
+<!-- templates/edit_todo.html -->
+{% extends "base.html" %}
+
+{% block title %}Edit Todo - Todo App{% endblock %}
+
+{% block content %}
+<h2>Edit Todo</h2>
+
+<form method="POST" style="max-width: 600px;">
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ todo.title }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="3">{{ todo.description or '' }}</textarea>
+    </div>
+    
+    <div class="form-group">
+        <label for="priority">Priority:</label>
+        <select id="priority" name="priority">
+            <option value="low" {% if todo.priority == 'low' %}selected{% endif %}>Low</option>
+            <option value="medium" {% if todo.priority == 'medium' %}selected{% endif %}>Medium</option>
+            <option value="high" {% if todo.priority == 'high' %}selected{% endif %}>High</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="due_date">Due Date:</label>
+        <input type="date" id="due_date" name="due_date" 
+               value="{% if todo.due_date %}{{ todo.due_date.strftime('%Y-%m-%d') }}{% endif %}">
+    </div>
+    
+    <button type="submit" class="btn">Update Todo</button>
+    <a href="{{ url_for('main.dashboard') }}" class="btn" style="background-color: #6c757d;">Cancel</a>
+</form>
+{% endblock %}

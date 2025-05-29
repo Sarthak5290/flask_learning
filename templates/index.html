@@ -1,19 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Session Demo</title>
-  </head>
-  <body class="p-4">
-    <h1>Session Example</h1>
+<!-- templates/index.html -->
+{% extends "base.html" %} {% block content %}
+<h2>Welcome to Todo App</h2>
+<p>A simple todo application to manage your tasks.</p>
 
-    {% if name and password %}
-    <p><strong>Name:</strong> {{ name }}</p>
-    <p><strong>Password:</strong> {{ password }}</p>
-    {% else %}
-    <p>No session data found.</p>
-    {% endif %}
+{% if not current_user.is_authenticated %}
+<p>
+  <a href="{{ url_for('auth.register') }}" class="btn">Get Started</a>
+  <a href="{{ url_for('auth.login') }}" class="btn">Sign In</a>
+</p>
+{% endif %}
 
-    <a href="{{ url_for('set_data') }}"><button>Set Session Data</button></a>
-  </body>
-</html>
+<h3>Features:</h3>
+<ul>
+  <li>Create and manage todos</li>
+  <li>Set priorities and due dates</li>
+  <li>Mark tasks as complete</li>
+  <li>Track your progress</li>
+</ul>
+{% endblock %}
