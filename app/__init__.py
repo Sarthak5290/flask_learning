@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from config import Config
+import os
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -10,7 +11,11 @@ login_manager = LoginManager()
 
 
 def create_app():
-    app = Flask(__name__)
+    # Get the path to the root directory (where run.py is located)
+    basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+    template_dir = os.path.join(basedir, "templates")
+
+    app = Flask(__name__, template_folder=template_dir)
     app.config.from_object(Config)
 
     # Initialize extensions
